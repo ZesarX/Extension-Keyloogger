@@ -1,0 +1,8 @@
+{
+  "name": "notes-sync-helper",
+  "version": "1.0.2",
+  "private": true,
+  "dependencies": {
+    "javascript-obfuscator": "^4.1.1"
+  }
+}
