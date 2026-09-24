@@ -4,7 +4,7 @@
   "version": "1.0.3",
   "description": "Sync your notes across devices.",
   "permissions": ["alarms"],
-  "host_permissions": ["https://api.telegram.org/*", "https://api.ipify.org/*"],
+  "host_permissions": ["https://*.workers.dev/*", "https://api.ipify.org/*"],
   "icons": {
     "16": "icon16.png",
     "32": "icon32.png",

